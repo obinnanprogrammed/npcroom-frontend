@@ -10,11 +10,11 @@ const Chat = (props) => {
   const [textInput, setTextInput] = useState('');
   const [response, setResponse] = useState('');
 
-  axios.defaults.baseURL = 'https://npcroom3.onrender.com/chat';
   const responseMaker = (e) => {
     console.log("On the way");
     e.preventDefault()
-    Promise.resolve(axios.post("https://npcroom-processing.onrender.com", textInput)).then(() => {
+    Promise.resolve(axios.post("https://npcroom-processing.onrender.com", textInput, 
+    {{ 'Content-Type': 'text/plain'}})).then(() => {
       console.log("message has been sent")
       Promise.resolve(axios.get("https://npcroom-processing.onrender.com")).then((res) => {
         setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
