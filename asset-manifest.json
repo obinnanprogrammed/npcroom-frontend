@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5a2af5fe.css",
+    "main.js": "/static/js/main.193bf7ad.js",
+    "static/media/NPCLogo.png": "/static/media/NPCLogo.d58be12de0b60f90ad2a.png",
+    "index.html": "/index.html",
+    "main.5a2af5fe.css.map": "/static/css/main.5a2af5fe.css.map",
+    "main.193bf7ad.js.map": "/static/js/main.193bf7ad.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a2af5fe.css",
+    "static/js/main.193bf7ad.js"
+  ]
+}
