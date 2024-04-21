@@ -1,40 +1,84 @@
 import React from "react";
-import {useState} from 'react';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import './Chat.css'
+import "./Chat.css";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import BackButton from "./Components/Logo";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Chat = (props) => {
   const navigate = useNavigate();
 
   const [textInput, setTextInput] = useState('');
   const [response, setResponse] = useState('');
-
-  const responseMaker = (e) => {
-    console.log("On the way");
-    e.preventDefault()
-    Promise.resolve(axios.post("https://npcroom-processing.onrender.com", textInput, 
-    { 'Content-Type': 'text/plain'})).then(() => {
-      console.log("message has been sent")
-      Promise.resolve(axios.get("https://npcroom-processing.onrender.com")).then((res) => {
-        setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
-      })
-    }).catch((err) => {
-      console.log("failed")
-      console.log(err.message)
-    })
-  }
+  const personality = localStorage.getItem("personality");
   
+  const responseMaker = (e) => {
+    e.preventDefault();
+    console.log("On the way");
+    
+    Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then((res) => {
+      console.log("message has been sent")
+      setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
+    }).catch((err) => {
+        console.log("failed", err.message);
+    });
+    /*
+    Promise.resolve(axios.post("https://npcroom-processing.onrender.com/"+personality, textInput)).then((res) => {
+      console.log("message has been sent")
+      setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
+    }).catch((err) => {
+        console.log("failed", err.message);
+    }); */
+  };
+
   return (
     <>
-      <button class = 'btn' onClick={() => navigate(-1)}>Go Back</button>
-      <div>
-        <form class="form" onSubmit={responseMaker}>
-          <textarea onChange={(e) => {setTextInput(e.target.value); }}></textarea>
-          <input type="Submit" value="Send"></input>
-        </form>
-        <p className="body" style={{whiteSpace: "pre-line"}}>{response}</p>
-      </div>
+      <BackButton></BackButton>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: '64px' }}>
+        <Box className="chatText" sx={{ display: "flex", flexDirection: "column", 
+          alignItems: "center", border: 2, borderColor: "primary", borderRadius: "8px" }}>
+          <Typography variant="body1" sx={{ whiteSpace: "pre-line", mt: 2 }}>
+            {response}
+          </Typography>
+        </Box>
+        <Box
+          className="textBox"
+          sx={{
+            mt: 2,
+            display: "flex", // Apply a flexbox layout
+            flexDirection: "column", // Stack children vertically
+            alignItems: "center", // Center children horizontally
+          }}
+          component="form"
+          onSubmit={responseMaker}
+        >
+          <TextField
+            fullWidth
+            multiline
+            rows={2}
+            variant="outlined"
+            placeholder="Type your message here"
+            onChange={(e) => setTextInput(e.target.value)}
+            className="chatText"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Button
+                    id="sendButton"
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Send
+                  </Button>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+      </Box>
     </>
   );
 };
