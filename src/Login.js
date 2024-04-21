@@ -35,7 +35,7 @@ function Login() {
     Promise.resolve(axios.post("https://npcroom-processing.onrender.com/login", {
       username: username,
       password: password
-    }, { withCredentials: true })).then((response) => {
+    })).then((response) => {
       console.log(response.data);
       if(response.data === "Failure") {
         toggleFail = true;
