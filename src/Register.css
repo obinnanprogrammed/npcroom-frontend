@@ -1,4 +1,4 @@
-#loginBox{
+#registerBox{
     margin: auto;
     margin-top: 30px;
     width: 30%;
@@ -11,41 +11,42 @@
     height: 70vh;
 }
 
-#loginText{
-    margin-top: 15%;
-    margin-bottom: 10%;
+#registerText{
+    margin-top: 10%;
+    margin-bottom: 5%;
     font-size: 30px;
 }
 
 
-.loginField{
+.registerField{
     width: 70%;
 }
 
 
-.loginField .MuiFilledInput-root {
+.registerField .MuiFilledInput-root {
     background-color: rgba(0, 0, 0, 0); /* Adjust the alpha value (opacity) as needed */
 }
   
-.loginField .MuiFilledInput-root:hover {
+.registerField .MuiFilledInput-root:hover {
     background-color: rgba(0, 0, 0, 0.05); /* Darker on hover */
 }
   
-.loginField .MuiFilledInput-root.Mui-focused {
+.registerField .MuiFilledInput-root.Mui-focused {
     background-color: rgba(0, 0, 0, 0.05); /* Maintain the same style on focus */
 }
    
 
 
 
-#loginButton{
+#registerButton{
     border-radius: 20px;
-    margin-bottom: 2%;
+    margin-bottom: 15%;
+    margin-top: 15%;
     width: 70%;
     height: 40px;
     font-size: 20px;
 }
 
-#loginButton:hover{
+#registerButton:hover{
     background-color: #66FCF1;
 }
