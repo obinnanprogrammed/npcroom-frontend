@@ -17,7 +17,7 @@ const Chat = (props) => {
   const responseMaker = (e) => {
     e.preventDefault();
     console.log("On the way");
-    Promise.resolve(axios.post("http://localhost:8080/"+personality, textInput)).then((res) => {
+    Promise.resolve(axios.post("https://npcroom-backend.onrender.com/"+personality, textInput)).then((res) => {
       console.log("Message sent successfully");
       setResponse(response + "You: " + textInput + "\n" + "NPC: " + res.data);
     }).catch((err) => {
