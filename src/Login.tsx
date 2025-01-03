@@ -18,7 +18,7 @@ function Login() {
   
   const handleLogin = () => {
     //e.preventDefault();
-    Promise.resolve(axios.post("https://www.npcroom-backend.onrender.com/login", {
+    Promise.resolve(axios.post("https://npcroom-backend.onrender.com/login", {
       username: username,
       password: password
     })).then((response) => {

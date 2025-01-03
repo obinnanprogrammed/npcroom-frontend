@@ -19,7 +19,7 @@ function Register() {
   
   const handleRegister = () => {
     //e.preventDefault();
-    Promise.resolve(axios.post("https://www.npcroom-backend.onrender.com/register", {
+    Promise.resolve(axios.post("https://npcroom-backend.onrender.com/register", {
         email: email,
         username: username,
         password: password
